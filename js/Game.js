@@ -15,7 +15,7 @@ class Game {
   // this method randomly retrieves one of the phrases stored in the phrases array
 
   handleInteraction (target) {
-    if (a) {
+    if (target === randomPh.showMatchedLetter) {
             key.classList.add('right'),
             this.checkForWin()
 

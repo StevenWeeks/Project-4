@@ -28,7 +28,7 @@ class Phrase {
   */
 
   checkLetter (target) {
-    let randLets = document.querySelectorAll('letter')
+    let randLets = [].slice.call(document.querySelectorAll('letter'))
     let guess = target
     for (let i = 0; i < randLets.length; i++) {
       if (randLets[i] === guess) {
@@ -42,9 +42,10 @@ class Phrase {
 
   showMatchedLetter (guess) {
     let letters = document.getElementsByClassName("letter")
-for (let i = 0; i < letters.length; i++) {
-  if (letters[i].textContent === guess) {
-    letters[i].style.color = "blue";
+    let arrLets = Array.from(letters)
+    for (let i = 0; i < arrLets.length; i++) {
+      if (arrLets[i].textContent === guess) {
+        arrLets[i].style.color = "blue";
       }
     }
   }
