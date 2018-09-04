@@ -56,7 +56,7 @@ phrase and then call the checkForWin() method.
   gameOver () {
   let restart = document.getElementById("overlay")
   let gameOver = document.getElementsByClassName('game-over-message')
-    if () {
+    if (win) {
     restart.style.display = "block"
     gameOver.innerHtml = "Winner winner, chicken dinner!"
 
@@ -78,6 +78,9 @@ phrase and then call the checkForWin() method.
     let newPhraser = this.getRandomPhrase()
     newPhraser.addPhraseToDisplay(newPhraser.phrase)
     this.missed = 0;
+    document.addEventListener("mousedown", function (e) {
+            e.preventDefault();
+        });
 }
 
 }

@@ -26,7 +26,7 @@ function resetDisplay () {
 
 function markButton (target) {
   let thisGuess = target.textContent
-    randomPh.handleInteraction(thisGuess)
+   randomPh.handleInteraction(thisGuess)
     console.log(thisGuess)
   }
 
