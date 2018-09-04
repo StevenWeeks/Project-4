@@ -53,10 +53,10 @@ phrase and then call the checkForWin() method.
 //  }
   // this method checks to see if the player has selected all of the letters.
 
-  gameOver (result) {
+  gameOver () {
   let restart = document.getElementById("overlay")
   let gameOver = document.getElementsByClassName('game-over-message')
-    if (result) {
+    if () {
     restart.style.display = "block"
     gameOver.innerHtml = "Winner winner, chicken dinner!"
 
