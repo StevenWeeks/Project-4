@@ -18,6 +18,9 @@ for (let i = 0; i < qwert.length; i++) {
 
 function resetDisplay () {
   document.getElementById("overlay").style.display = "none"
+  let overlay = document.getElementById("overlay")
+  overlay.classList.remove('win')
+  overlay.classList.remove('lose')
   randomPh.startGame()
 }
 

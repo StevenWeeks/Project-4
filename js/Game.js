@@ -76,13 +76,15 @@ phrase and then call the checkForWin() method.
       setTimeout(() => {
         scoreboard.removeChild(hearts[0])
         restart.style.display = "block"
+        restart.classList.add('win')
         gameOver.textContent = "Winner winner, chicken dinner!"
         restartButton.textContent = "Try your skill again"
       }, 500)
     } else {
       setTimeout(() =>{
+        scoreboard.removeChild(hearts[0])
         restart.style.display = "block"
-
+        restart.classList.add('lose')
         gameOver.textContent = "You lose!"
         restartButton.textContent = "Try again!"
       }, 500)
@@ -103,9 +105,11 @@ phrase and then call the checkForWin() method.
         key.disabled = false
       }
     })
+
     let newPhraser = this.getRandomPhrase()
     newPhraser.addPhraseToDisplay(newPhraser.phrase)
     this.missed = 0;
+
 
     let scoreboard = document.getElementById('scoreboard')
     let ol = document.createElement('ol')
