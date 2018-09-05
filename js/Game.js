@@ -1,10 +1,13 @@
 
+// this is the Game class, it's methods control how the game acts. this.phrases
+// makes a new Phrase instance based on a random phrase from the array on app.js
 
 class Game {
   constructor (missed, phrases) {
     this.missed = missed;
     this.phrases = phrases.map((phrase) => new Phrase(phrase))
   }
+  // function gets a random phrase from the provided array on app.js
   getRandomPhrase () {
     let aPhrase = this.phrases
     var thePhrase = aPhrase[Math.floor(Math.random() * aPhrase.length)]
@@ -12,41 +15,41 @@ class Game {
   }
 
 
-  // this method randomly retrieves one of the phrases stored in the phrases array
 
+// this disables keys if they're clicked
   handleInteraction (target) {
     event.target.disabled = true;
+    // check if the checkletter statement is true, then adds Chosen to target keys
+    // and checks
+    // for win function
     if (this.phrases[0].checkLetter(target)) {
       event.target.classList.add("chosen")
       this.checkForWin()
+      // if checkLetter is false, remove a heart and target key has wrong class added
     } else {
       this.removeLife()
       event.target.classList.add("wrong")
     }
   }
 
-
-  /* this method checks to see if the button clicked by the player matches a letter
- in the phrase.
- If it does not, then call the removeLife() method..
-If the selected letter matches, call the showMatchedLetter() method on the
-phrase and then call the checkForWin() method.
-*/
-
+  // function used to remove hearts from screen and add count to this.misses,
+  // when this.missed count is equal to 5 then gameover()
+  // no definition in this.gameOver() so it'll trigger lose scenario.
   removeLife () {
     let hearts = document.getElementsByClassName('tries')
     hearts[0].classList.add('shakey')
     setTimeout(()=> {
       hearts[0].remove();
-    }, 500)
+    }, 300)
     this.missed++
     if (this.missed === 5) {
       this.gameOver()
     }
   }
-  // this method removes a life, removes a heart from the board, and, if the player
-  // is out of lives, ends the game.
 
+// function compares the amount of letters in the random phrase to the letters
+// with class correct, and if  equal it triggers this.gameOver(true).  it has true
+// so that it'll come out with a definition and trigger win scenario.
   checkForWin () {
     let letters = document.getElementsByClassName('correct')
     let numbNeeded = document.getElementsByClassName('letter')
@@ -59,13 +62,12 @@ phrase and then call the checkForWin() method.
         }
       }
     }
+  }
 
-
-    }
-
-//  }
-  // this method checks to see if the player has selected all of the letters.
-
+// function that triggers in a win or lose scenario.  Removes the ol element,
+// changes the display to the overlay and the correct class based on a win/lose
+// shows appropriate message for win/lose  and adds back the button to start new
+// game
   gameOver (result) {
     let restart = document.getElementById("overlay")
     let gameOver = document.getElementById('game-over-message')
@@ -90,9 +92,9 @@ phrase and then call the checkForWin() method.
       }, 500)
     }
   }
-  // this method displays a message if the player wins or a different message if
-  // they lose.
 
+// function that clears all wrong/chosen  classes from keys
+// enables all the keys again
   startGame () {
 
     let keys = document.querySelectorAll('.key')
@@ -105,12 +107,13 @@ phrase and then call the checkForWin() method.
         key.disabled = false
       }
     })
-
+    // gets a new random phrase for the game and resets this.missed and tells it
+    // to call Phrase.addPhraseToDisplay() with callback of this.getRandomPhrase
     let newPhraser = this.getRandomPhrase()
     newPhraser.addPhraseToDisplay(newPhraser.phrase)
     this.missed = 0;
 
-
+    // this adds the hearts to the bottom of the screen,
     let scoreboard = document.getElementById('scoreboard')
     let ol = document.createElement('ol')
     ol.classList.add('liHolder')
@@ -126,12 +129,11 @@ phrase and then call the checkForWin() method.
       hearts.appendChild(img)
   }
 
-
+    // saw Warren Leyes telling Reggie Williams about this function to keep
+    // folks from cheating by highlighting the phrase.
     document.addEventListener("mousedown", function (e) {
       e.preventDefault();
     });
 }
 
 }
-  // calls the getRandomPhrase() method, and adds that phrase to the board by
-  // calling the Phrase class' addPhraseToDisplay() method.

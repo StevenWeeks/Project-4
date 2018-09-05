@@ -2,6 +2,10 @@ class Phrase {
   constructor (phrase) {
     this.phrase = phrase
 }
+  // takes the phrase passed to it from Game.js, then splits the letters and spaces
+  // then adds the letters and spaces to the ul as lis, then makes the variable
+  // invisStart the innterHTML of the phrase area.
+
   addPhraseToDisplay () {
     let phraseObject = this.phrase.split("");
     let invisStart = '<ul>'
@@ -16,17 +20,10 @@ class Phrase {
     let theBoard = document.getElementById('phrase')
     theBoard.innerHTML = invisStart
   }
-
-
-  /* this adds letter placeholders to the display when the game starts.
-  Each letter is presented by an empty box, one list item for each letter.
-  See the example_phrase_html.txt file for an example of what the render HTML
-  for a phrase should look like when the game starts. When the player correctly
-  guesses a letter, the empty box is replaced with a the matched letter
-  (see the showMatchedLetter() method below. Make sure the phrase displayed on
-  the screen doesn't include spaces.
-  */
-
+// used to see if the target letter chosen by the player is anywhere in the
+// phrase and returns true so handleInteraction() knows to add 'chosen' or 'wrong'
+// tried a forEach here, but found out it doesn't stop after each to give
+// handleInteraction() a true statement, where a for statement does.
   checkLetter (target) {
     let randLets = [].slice.call(document.querySelectorAll(".letter"))
     for (let i = 0; i < randLets.length; i++) {
@@ -38,7 +35,9 @@ class Phrase {
 
   }
 
-// checks to see if letter selected by player matches a letter in the phrase.
+// collects all the letters in the phrase and sees if it's the same as the player's
+// selection, and if it does it turns the letter blue in the phrase area.  Also
+// adds the correct class so my checkForwin function works correctly.
 
   showMatchedLetter (target) {
     let letters = document.querySelectorAll(".letter")
@@ -50,4 +49,3 @@ class Phrase {
     })
   }
 }
-// reveals the letter(s) on the board that matches player's selection.
