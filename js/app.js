@@ -1,6 +1,4 @@
-document.getElementById("btn__reset").addEventListener('click', () => {
-  resetDisplay();
-})
+document.getElementById("btn__reset").addEventListener('click', resetDisplay)
 // Add an event listener to the "Start Game" button which calls the resetDisplay()
 // function, creates a new Game object, and starts the game.
 var phrase = [
@@ -13,21 +11,19 @@ var phrase = [
 ]
 var randomPh = new Game(0, phrase)
 
-let qwert = document.getElementById('qwerty')
-qwert.addEventListener('click', (e) => {
-  let letter = e.target
-   markButton(letter)
-})
+let qwert = document.getElementsByClassName('key')
+for (let i = 0; i < qwert.length; i++) {
+  qwert[i].addEventListener('click', markButton)
+}
 
 function resetDisplay () {
   document.getElementById("overlay").style.display = "none"
   randomPh.startGame()
 }
 
-function markButton (target) {
-  let thisGuess = target.textContent
+function markButton () {
+  let thisGuess = event.target.textContent
    randomPh.handleInteraction(thisGuess)
-    console.log(thisGuess)
   }
 
 

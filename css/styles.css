@@ -31,7 +31,7 @@ body {
 }
 
 li, ol, ul {
-  padding: 0;
+  padding: 15px;
   display: inline-block;
 }
 
@@ -140,6 +140,11 @@ button {
 .wrong {
   background: #f7a964;
   color: #FFFFFF;
+
+}
+.shakey {
+  animation-name: shake;
+  animation-duration: .45s;
 }
 
 .btn__reset {
@@ -201,10 +206,4 @@ button {
 
 .lose a {
   color: var(--color-lose);
-}
-
-}
-.doneD{
-color: red;
-background-color: black;
 }

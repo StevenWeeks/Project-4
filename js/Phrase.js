@@ -28,28 +28,26 @@ class Phrase {
   */
 
   checkLetter (target) {
-    let randLets = [].slice.call(document.querySelectorAll('letter'))
-    let guess = target
+    let randLets = [].slice.call(document.querySelectorAll(".letter"))
     for (let i = 0; i < randLets.length; i++) {
-      if (randLets[i] === guess) {
-        this.showMatchedLetter(guess)
+      if (randLets[i].textContent === target) {
+        this.showMatchedLetter(target)
+        return true;
       }
     }
-  }
 
+  }
 
 // checks to see if letter selected by player matches a letter in the phrase.
 
-  showMatchedLetter (guess) {
-    let letters = document.getElementsByClassName("letter")
-    let arrLets = Array.from(letters)
-    for (let i = 0; i < arrLets.length; i++) {
-      if (arrLets[i].textContent === guess) {
-        arrLets[i].style.color = "blue";
+  showMatchedLetter (target) {
+    let letters = document.querySelectorAll(".letter")
+    letters.forEach(targs => {
+      if (targs.textContent === target) {
+        targs.style.color = "blue";
+        targs.classList.add('correct')
       }
-    }
+    })
   }
-
-
 }
 // reveals the letter(s) on the board that matches player's selection.
